@@ -8,8 +8,6 @@ import { Link } from "react-router";
 function HomeDashboard() {
 
   const CategoriesData = useSelector((state) => state.categories);
-  console.log(CategoriesData);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

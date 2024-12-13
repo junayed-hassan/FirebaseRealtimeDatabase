@@ -1,30 +1,57 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { categoryFormSchema } from "../validation/validationSchema";
-import { setDataToFirebase } from "../database/firebaseUtils";
+import { getFirebaseDateForEdit, setDataToFirebase, updateDataFromFirebase } from "../database/firebaseUtils";
 import { useNavigate, useParams } from "react-router";
+import { useEffect } from "react";
 
 function CreateCategory() {
     const navigate  = useNavigate();
     const prams = useParams();
-    console.log(prams);
     
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm({
         resolver: yupResolver(categoryFormSchema),
+        defaultValues: {
+            categoryName: "",
+            categoryImageUrl: "",
+        },
     });
     
     const onSubmit = (data) => {
-        setDataToFirebase("categories", data)
+        if (prams.id) {
+            // updateCategory
+            updateDataFromFirebase(`categories/${prams.id}`, data);
+        } else {
+            // createCategory
+            setDataToFirebase("categories", data);
+        }
         navigate(-1);
     };
 
+    useEffect(() => {
+        async function getData() {
+            let res = await getFirebaseDateForEdit("categories/" + prams.id);
+            reset(res);            
+        };
+        if (prams.id) {
+            getData();
+        } else {
+            reset({
+                categoryName: "",
+                categoryImageUrl: "",
+            });
+        }
+    },[prams, reset]);
+
+
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-center">Add Category</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">{prams.id ? "UpData Category" : "Add Category"}</h2>
             <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 {/* Product Name */}
                 <div>
