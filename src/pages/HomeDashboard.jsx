@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { deleteCategories, getCategories } from "../features/category/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../features/category/categorySlice";
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import Modal from "../component/Modal";
+// import { removeDataFromFirebase } from "../database/firebaseUtils";
 
 
 
@@ -9,6 +11,21 @@ function HomeDashboard() {
 
   const CategoriesData = useSelector((state) => state.categories);
   const dispatch = useDispatch();
+  const [deleteCategoryId, setDeleteCategoryId] = useState(false);
+
+  const handleCleack = (id) => {
+    setDeleteCategoryId(id)
+  };
+  const handleClose = () => {
+    setDeleteCategoryId(false)
+  };
+  const handleDelete = () => {
+    if (deleteCategoryId) {
+      dispatch(deleteCategories(deleteCategoryId));
+      // removeDataFromFirebase("categories/" + deleteCategoryId);
+    };
+    setDeleteCategoryId(false)
+  };
 
   useEffect(() => {
     dispatch(getCategories());
@@ -103,7 +120,7 @@ function HomeDashboard() {
           <Link to={`/edit-category/${category.id}`} className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
             Edit
           </Link>
-          <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+          <button onClick={() => handleCleack(category.id)} className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
             Delete
           </button>
         </div>
@@ -113,7 +130,7 @@ function HomeDashboard() {
 
   return (
     <div>
-
+      {deleteCategoryId && <Modal onDelete={handleDelete} onClose={handleClose} />}
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-6">
@@ -179,7 +196,6 @@ function HomeDashboard() {
           </div>
         </div>
       </section>
-
     </div>
   )
 }
