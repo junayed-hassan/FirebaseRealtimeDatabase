@@ -4,6 +4,7 @@ import { categoryFormSchema } from "../validation/validationSchema";
 import { getFirebaseDateForEdit, setDataToFirebase, updateDataFromFirebase } from "../database/firebaseUtils";
 import { useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function CreateCategory() {
     const navigate  = useNavigate();
@@ -21,14 +22,16 @@ function CreateCategory() {
             categoryImageUrl: "",
         },
     });
-    
+
     const onSubmit = (data) => {
         if (prams.id) {
             // updateCategory
             updateDataFromFirebase(`categories/${prams.id}`, data);
+            toast.success("Update is successful");
         } else {
             // createCategory
             setDataToFirebase("categories", data);
+            toast.success("categories is successful");
         }
         navigate(-1);
     };
