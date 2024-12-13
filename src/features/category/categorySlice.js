@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getFirebaseDate, removeDataFromFirebase } from "../../database/firebaseUtils";
+import { handleAsyncThunk } from "./handleCategoriesThunk";
 
 
 const initialState = {
@@ -25,29 +26,33 @@ const categoriesSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCategories.pending, (state) => {
-            state.isError = false;
-            state.isLoading = true;
-        }).addCase(getCategories.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.categories = action.payload;
-        }).addCase(getCategories.rejected, (state, action) => {
-            state.isError = true;
-            state.error = action.payload.error?.message;
-        });
 
-        builder.addCase(deleteCategories.pending, (state) => {
-            state.isError = false;
-            state.isLoading = true;
-        }).addCase(deleteCategories.fulfilled, (state, action) => {
-            const categoriesIndex = state.categories.findIndex(
-                (item) => item.id == action.payload
-            );
-            state.categories.splice(categoriesIndex, 1);
-        }).addCase(deleteCategories.rejected, (state, action) => {
-            state.isError = true;
-            state.error = action.payload.error?.message;
-        });
+        handleAsyncThunk(builder, getCategories);
+        handleAsyncThunk(builder, deleteCategories);
+        
+        // builder.addCase(getCategories.pending, (state) => {
+        //     state.isError = false;
+        //     state.isLoading = true;
+        // }).addCase(getCategories.fulfilled, (state, action) => {
+        //     state.isLoading = false;
+        //     state.categories = action.payload;
+        // }).addCase(getCategories.rejected, (state, action) => {
+        //     state.isError = true;
+        //     state.error = action.payload.error?.message;
+        // });
+
+        // builder.addCase(deleteCategories.pending, (state) => {
+        //     state.isError = false;
+        //     state.isLoading = true;
+        // }).addCase(deleteCategories.fulfilled, (state, action) => {
+        //     const categoriesIndex = state.categories.findIndex(
+        //         (item) => item.id == action.payload
+        //     );
+        //     state.categories.splice(categoriesIndex, 1);
+        // }).addCase(deleteCategories.rejected, (state, action) => {
+        //     state.isError = true;
+        //     state.error = action.payload.error?.message;
+        // });
     } ,
 });
 
