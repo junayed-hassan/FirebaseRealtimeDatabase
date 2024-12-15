@@ -33,7 +33,7 @@ function CreateCategory() {
             setDataToFirebase("categories", data);
             toast.success("categories is successful");
         }
-        navigate(-1);
+        navigate("/");
     };
 
     useEffect(() => {

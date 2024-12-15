@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router"
 import DashboardLayout from './layout/DashboardLayout';
-import HomeDashboard from "./pages/HomeDashboard";
 import Error from "./Error";
 import CreateCategory from "./pages/CreateCategory";
 import CreateProduct from './pages/CreateProduct';
+import HomeDashboard from "./pages/dashboard/home/Index";
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
         <Route index element={<HomeDashboard/>}></Route>
         <Route path="/create-product" element={<CreateCategory/>}></Route>
         <Route path="/edit-category/:id" element={<CreateCategory/>}></Route>
+        <Route path="/edit-products/:id" element={<CreateProduct/>}></Route>
         <Route path="/create-category" element={<CreateProduct/>}></Route>
 
         {/* Error Route */}
