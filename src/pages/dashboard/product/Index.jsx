@@ -1,8 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { productsFormSchema } from "../validation/validationSchema";
+import { productsFormSchema } from "../../../validation/validationSchema";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { setProducts } from "../features/products/ProductsSlice";
+import { setProducts } from "../../../features/products/ProductsSlice";
 import { useNavigate } from "react-router";
 
 

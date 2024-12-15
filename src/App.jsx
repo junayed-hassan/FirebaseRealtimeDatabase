@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router"
 import DashboardLayout from './layout/DashboardLayout';
 import Error from "./Error";
-import CreateCategory from "./pages/CreateCategory";
-import CreateProduct from './pages/CreateProduct';
+import CreateCategory from "./pages/dashboard/category/Index";
+import CreateProduct from './pages/dashboard/product/Index';
 import HomeDashboard from "./pages/dashboard/home/Index";
 
 function App() {
