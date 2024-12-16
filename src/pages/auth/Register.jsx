@@ -1,8 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { registerValidation } from "../../validation/validationSchema";
+import { registerUser } from "../../database/firebaseAuth";
+import { toast } from "react-toastify";
+import { userProfile } from "../../database/firebaseUtils";
+import { useNavigate } from "react-router";
 
 function Register() {
+    const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,8 +17,21 @@ function Register() {
     resolver: yupResolver(registerValidation),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async(data) => {
+    const fromData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: "user",
+    };
+    const res = await registerUser(fromData);
+    if (res.error) {
+        toast.error(res.code);
+    }else {
+       // already rejecter
+        userProfile(res)
+        navigate("/login")
+    }
     reset();
   };
 

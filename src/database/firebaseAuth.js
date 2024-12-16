@@ -5,17 +5,22 @@ const auth = getAuth(app);
 
 const registerUser = async (data) => {
     const { name, email, password, role } = data;
-    createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+    try {
+        const res = createUserWithEmailAndPassword(auth, email, password); 
+        const user = (await res).user
+        return {
+            id: user.uid,
+            name,
+            role,
+        };
+
+    } catch (error) {
+        return {
+            error: true,
+            code: error.code,
+            message: error.message,
+        }
+    }
 };
 
 const loginUser = async () => {
