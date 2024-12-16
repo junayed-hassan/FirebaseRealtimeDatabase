@@ -51,6 +51,7 @@ function Register() {
             <input
               type="text"
               id="name"
+              autoComplete="new-name"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your name"
               {...register("name")}
@@ -71,6 +72,7 @@ function Register() {
             <input
               type="email"
               id="email"
+              autoComplete="new-email"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your email"
               {...register("email")}
@@ -90,6 +92,7 @@ function Register() {
             <input
               type="password"
               id="password"
+              autoComplete="new-password"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter your password"
               {...register("password")}
@@ -109,6 +112,7 @@ function Register() {
             <input
               type="password"
               id="confirmPassword"
+              autoComplete="new-confirmPassword"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Confirm your password"
               {...register("confirmPassword")}
