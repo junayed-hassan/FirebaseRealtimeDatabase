@@ -36,7 +36,7 @@ function Login() {
           role: userProfile.role,
         };
         dispatch(loginUsers(loginUserInfo))
-        navigate("")
+        navigate("/dashboard")
       }
     reset();
   };

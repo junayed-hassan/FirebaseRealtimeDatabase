@@ -116,7 +116,7 @@ function CreateCategory() {
         </button>
       </form>
     </div>
-  );
+  )
 }
 
 export default CreateCategory;
