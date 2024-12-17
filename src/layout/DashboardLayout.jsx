@@ -49,7 +49,7 @@ function DashboardLayout() {
 
             <h1 className="text-center text-3xl font-bold py-4">
                 <Avatar round={true} size="40" className="me-2" name={authUser.user.name} />
-                Welcome, {authUser.user.name}
+                {authUser.user.name}
             </h1>
 
             <div className="py-5 container mx-auto max-w-5xl">
