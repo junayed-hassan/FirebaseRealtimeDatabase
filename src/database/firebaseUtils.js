@@ -1,12 +1,18 @@
-
-import { getDatabase, onValue, push, ref, remove, set } from "firebase/database";
+import {
+    getDatabase,
+    ref,
+    onValue,
+    push,
+    set,
+    remove,
+} from "firebase/database";
 import app from "./firebaseConfig";
 
-const db = getDatabase(app);
+export const db = getDatabase(app);
 
-//read/get data, from database
-export const getFirebaseDate = async (tableName) => {
-    const starCountRef = ref(db, tableName)
+// Read/Get data from database;
+export const getFirebaseData = async (tableName) => {
+    const starCountRef = ref(db, tableName);
 
     return new Promise((resolve, reject) => {
         try {
@@ -19,65 +25,68 @@ export const getFirebaseDate = async (tableName) => {
                         ...item.val(),
                     });
                 });
+
                 resolve(updateCategoryList);
             });
-        } catch (error) {
-            reject(error)
-        }
-    });
-};
-
-export const getFirebaseDateForEdit = async (tableName) => {
-    const starCountRef = ref(db, tableName);
-    return new Promise((resolve, reject) => {
-        try {
-            onValue(starCountRef, (snapshot) => {
-                resolve(snapshot.val());
-            });
-        } catch (error) {
-            reject(error)
-        };
-    });
-};
-
-//write/set/push data to database;
-export const setDataToFirebase = (tablaName, data) => {
-    push(ref(db, tablaName), data);
-};
-
-//write/set/push data to database;
-export const updateDataFromFirebase = (tablaName, data) => {
-    set(ref(db, tablaName), data);
-};
-
-//remove Data From Firebase;
-export const removeDataFromFirebase = (tablaName) => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve(remove(ref(db, tablaName)));
         } catch (error) {
             reject(error);
         }
     });
 };
 
-// *********** user profile *************
-export const userProfile = async (data) => {
-    const { id, name, role } = data;
-    set(ref(db, "useProfile/" + id), {
+export const getFirebaseDataForEdit = async (tableName) => {
+    const starCountRef = ref(db, tableName);
+
+    return new Promise((resolve, reject) => {
+        try {
+            onValue(starCountRef, (snapshot) => {
+                resolve(snapshot.val());
+            });
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+// Write/Set/Push data to database;
+export const setDataToFirebase = (tableName, data) => {
+    push(ref(db, tableName), data);
+};
+
+// Write/Set/Push data to database;
+export const updateDataFromFirebase = (tableName, data) => {
+    set(ref(db, tableName), data);
+};
+
+// Remove data from firebase;
+export const removeDataFromFirebase = (tableName) => {
+    return new Promise((resolve, reject) => {
+        try {
+            resolve(remove(ref(db, tableName)));
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+// ******************************* User Profile *************************** //
+export const createUserProfile = async (data) => {
+    const { id, name, role, email } = data;
+    set(ref(db, "userProfile/" + id), {
         name,
         role,
+        email,
     });
 };
 
 export const getProfile = async (id) => {
     return new Promise((resolve, reject) => {
         try {
-            onValue(ref(db, "useProfile/" + id), (snapshot) => {
+            onValue(ref(db, "userProfile/" + id), (snapshot) => {
                 resolve(snapshot.val());
             });
         } catch (error) {
-            reject(error)
-        };
+            reject(error);
+        }
     });
 };

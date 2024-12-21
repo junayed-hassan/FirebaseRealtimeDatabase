@@ -1,49 +1,67 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+} from "firebase/auth";
 import app from "./firebaseConfig";
 
 const auth = getAuth(app);
 
 const registerUser = async (data) => {
     const { name, email, password, role } = data;
+
     try {
-        const res = createUserWithEmailAndPassword(auth, email, password); 
-        const user = (await res).user
+        const response = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+        const user = response.user;
+
         return {
             id: user.uid,
             name,
             role,
         };
-
     } catch (error) {
         return {
             error: true,
             code: error.code,
             message: error.message,
-        }
+        };
     }
 };
 
 const loginUser = async ({ email, password }) => {
     try {
-        const res = signInWithEmailAndPassword(auth, email, password);
-        const use = (await res).user;
-        
+        const response = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        const user = response.user;
+
         return {
-            id:use.uid,
-            email: use.email,
-        }
-        
+            id: user.uid,
+            email: user.email,
+        };
     } catch (error) {
         return {
             error: true,
             code: error.code,
             message: error.message,
-        }
-    };
+        };
+    }
 };
 
 const logOutUser = async () => {
-
+    signOut(auth)
+        .then(() => {})
+        .catch((error) => {
+            // An error happened.
+        });
 };
 
-export { registerUser, loginUser, logOutUser, auth };
+export { registerUser, logOutUser, loginUser, auth };
