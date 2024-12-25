@@ -14,8 +14,12 @@ const productsSlice = createSlice({
         getProducts: (state, action) => {
             state.products = action.payload;
         },
+        updateProductsAfterFavorite: (state, action) => {
+            state.products = action.payload;
+        },
     },
 });
 
 export default productsSlice.reducer;
-export const { getProducts } = productsSlice.actions;
+export const { getProducts, updateProductsAfterFavorite } =
+    productsSlice.actions;

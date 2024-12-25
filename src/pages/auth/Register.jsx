@@ -5,9 +5,13 @@ import { registerUser } from "../../database/firebaseAuth";
 import { toast } from "react-toastify";
 import { createUserProfile } from "../../database/firebaseUtils";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setLoginUserDataToRedux } from "../../features/auth/authSlice";
 
 const Register = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const {
         register,
         handleSubmit,
@@ -22,15 +26,27 @@ const Register = () => {
             name: data.name,
             email: data.email,
             password: data.password,
-            role: "user",
         };
+
         const res = await registerUser(formData);
+        console.log(res);
 
         if (res.error) {
             toast.error(res.code);
         } else {
-            // already registered;
-            createUserProfile(res);
+            createUserProfile({
+                id: res.id,
+                name: formData.name,
+                email: formData.email,
+                role: "user",
+            });
+            dispatch(
+                setLoginUserDataToRedux({
+                    id: res.id,
+                    email: formData.email,
+                    role: "user",
+                })
+            );
             reset();
             toast.success("You are successfully registered");
             navigate("/login");

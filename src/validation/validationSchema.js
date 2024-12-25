@@ -1,22 +1,16 @@
 import * as Yup from "yup";
 
-
-export const categoryFormSchema = Yup
-.object({
+export const categoryFormSchema = Yup.object({
     categoryName: Yup.string().required(),
     categoryImageUrl: Yup.string().required().url(),
-})
-.required();
+}).required();
 
-
-export const productsFormSchema = Yup
-.object({
+export const productFormSchema = Yup.object({
     productName: Yup.string().required(),
     productPrice: Yup.number().required(),
     productImageUrl: Yup.string().required().url(),
-})
-.required();
-
+    productCategory: Yup.string().required(),
+}).required();
 
 export const registerValidation = Yup.object({
     name: Yup.string()
@@ -36,7 +30,6 @@ export const registerValidation = Yup.object({
         .required("Please confirm your password.")
         .oneOf([Yup.ref("password"), null], "Passwords must match."),
 }).required();
-
 
 export const loginValidation = Yup.object({
     email: Yup.string()

@@ -13,6 +13,10 @@ export default function DashboardLayout() {
     const authStore = useSelector((store) => store.auth);
     const dispatch = useDispatch();
 
+    const test = useSelector((store) => store.auth);
+
+    console.log(test);
+
     const navigate = useNavigate();
 
     const [isShow, setIsShow] = useState(

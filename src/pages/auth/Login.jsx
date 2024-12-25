@@ -59,7 +59,10 @@ const Login = () => {
 
             if (!userProfile || userProfile.email != user.email) {
                 // Create a new user;
-                createUserProfile(newUser);
+                createUserProfile({
+                    ...newUser,
+                    role: "user",
+                });
                 dispatch(
                     setLoginUserDataToRedux({
                         ...newUser,

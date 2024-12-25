@@ -90,3 +90,13 @@ export const getProfile = async (id) => {
         }
     });
 };
+
+// ******************************* Add Product to cart *************************** //
+export const setProductToCart = (data) => {
+    const { userId, productId, quantity } = data;
+
+    push(ref(db, "carts/" + userId), {
+        productId,
+        quantity,
+    });
+};
