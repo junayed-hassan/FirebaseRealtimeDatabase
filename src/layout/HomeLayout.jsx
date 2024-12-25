@@ -50,9 +50,9 @@ export default function HomeLayout() {
         if (user) {
             const starCountRef = ref(db, `carts/${user.id}`);
 
+            // eslint-disable-next-line no-unused-vars
             const disableCarts = onValue(starCountRef, (snapshot) => {
                 const updateCartList = [];
-
                 snapshot.forEach((item) => {
                     updateCartList.push({
                         id: item.key,
@@ -67,7 +67,7 @@ export default function HomeLayout() {
             disableCategory();
             disableProduct();
         };
-    }, [dispatch]);
+    }, [dispatch, user]);
 
     return (
         <>
