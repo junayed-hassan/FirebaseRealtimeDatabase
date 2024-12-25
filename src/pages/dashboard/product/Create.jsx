@@ -57,7 +57,7 @@ export default function CreateProduct() {
         } else {
             reset();
         }
-    }, [params]);
+    }, [params.id, reset]);
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 shadow-md rounded-lg">
