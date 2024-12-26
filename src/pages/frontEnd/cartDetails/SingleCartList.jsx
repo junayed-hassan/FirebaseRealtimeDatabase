@@ -1,3 +1,8 @@
+import { useSelector } from "react-redux";
+import { db } from "../../../database/firebaseUtils";
+import { ref, remove, set } from "firebase/database";
+import { toast } from "react-toastify";
+
 /* eslint-disable react/prop-types */
 export default function SingleCartList({ cart }) {
     const {
@@ -9,10 +14,30 @@ export default function SingleCartList({ cart }) {
         quantity,
     } = cart;
 
+    const {user} = useSelector((state) => state.auth);
+    const handleClick = () => {
+       remove(ref(db, `carts/${user.id}/${cartId}`));
+       toast.success("Product removed from cart successfully");
+    };
+
+    const handlePlus = () => {
+        set(ref(db, `carts/${user.id}/${cartId}`),{
+            productId,
+            quantity: quantity < 10 ? quantity + 1 : quantity 
+        })
+    };
+
+    const handleMinus = () => {
+        set(ref(db, `carts/${user.id}/${cartId}`),{
+            productId,
+            quantity: quantity === 1 ? 1 : quantity - 1      
+        })
+    };
+
     return (
         <li className="border p-2 mb-2">
             <div className="flex items-center relative">
-                <button className="absolute top-[-5px] right-[-5px] z-10">
+                <button onClick={handleClick} className="absolute top-[-5px] right-[-5px] z-10">
                     <svg
                         className="w-5 h-5 text-red-500 dark:text-white"
                         aria-hidden="true"
@@ -39,14 +64,17 @@ export default function SingleCartList({ cart }) {
                 />
                 <div className="ml-2">
                     <h3 className="font-semibold">{productName}</h3>
-                    <span className="text-blue-600 font-bold">
-                        ${productPrice}
+                    <span className="text-sm text-blue-400 font-semibold">
+                        price: ${productPrice}
+                        <br />
+                        Total: ${productPrice * quantity}
                     </span>
                 </div>
                 <div className="flex gap-2 ml-auto">
                     <button
-                        disabled={false}
-                        className="w-6 h-6 rounded-sm flex justify-center items-center bg-blue-600 text-white disabled:bg-blue-400"
+                    onClick={handleMinus}
+                        disabled={quantity === 1 ? true : false}
+                        className="w-6 h-6 rounded-sm flex justify-center items-center bg-blue-600 text-white disabled:cursor-not-allowed disabled:bg-blue-400"
                     >
                         <svg
                             className="w-4 h-4 text-white dark:text-white"
@@ -68,8 +96,9 @@ export default function SingleCartList({ cart }) {
                     </button>
                     <span>{quantity}</span>
                     <button
-                        disabled={false}
-                        className="w-6 h-6 rounded-sm flex justify-center items-center bg-blue-600 text-white disabled:bg-blue-400"
+                    onClick={handlePlus}
+                        disabled={quantity < 10 ? false : true}
+                        className="w-6 h-6 rounded-sm flex justify-center items-center bg-blue-600 text-white disabled:cursor-not-allowed disabled:bg-blue-400"
                     >
                         <svg
                             className="w-4 h-4 text-white dark:text-white"

@@ -21,7 +21,6 @@ export default function Facilities() {
                 <h4 className="text-xl font-semibold text-gray-800">
                   Fast Delivery
                 </h4>
-                <p className="text-gray-600 mt-1">Starting from $10</p>
               </div>
             </div>
           </div>
@@ -34,7 +33,6 @@ export default function Facilities() {
                 <h4 className="text-xl font-semibold text-gray-800">
                   Wide Variety
                 </h4>
-                <p className="text-gray-600 mt-1">Thousands of products</p>
               </div>
             </div>
           </div>
@@ -47,7 +45,6 @@ export default function Facilities() {
                 <h4 className="text-xl font-semibold text-gray-800">
                   24/7 Support
                 </h4>
-                <p className="text-gray-600 mt-1">Always here for you</p>
               </div>
             </div>
           </div>
@@ -60,7 +57,6 @@ export default function Facilities() {
                 <h4 className="text-xl font-semibold text-gray-800">
                   Secure Payments
                 </h4>
-                <p className="text-gray-600 mt-1">Encrypted transactions</p>
               </div>
             </div>
           </div>
@@ -73,7 +69,6 @@ export default function Facilities() {
                 <h4 className="text-xl font-semibold text-gray-800">
                   Customer Care
                 </h4>
-                <p className="text-gray-600 mt-1">Your satisfaction matters</p>
               </div>
             </div>
           </div>
