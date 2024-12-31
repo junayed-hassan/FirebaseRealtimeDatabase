@@ -7,6 +7,10 @@ export default function SingleProductIndex() {
 
     const product = products.find((pro) => pro.id === params.id);
 
+    if (!product) {
+        return <h1 className="text-center py-6">Product is loading ...</h1>;
+    }
+
     let { productImageUrl, productName, productPrice, productCategory } =
         product;
 

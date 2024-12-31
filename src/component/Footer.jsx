@@ -1,126 +1,125 @@
 const Footer = () => {
-  return (
-    <footer className="bg-gray-100 text-gray-700">
-      <div className="container mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* <!-- BrandName --> */}
+    return (
+        <footer className="bg-[#0F3460] text-white">
+            <div className="container mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+                {/* Brand Section */}
+                <div>
+                    <h2 className="text-xl font-bold text-red-500 mb-4">
+                        Bonik
+                    </h2>
+                    <p className="text-sm mb-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Auctor libero id et gravida. Sit diam duis mauris nulla
+                        cursus. Erat et lectus vel ut sollicitudin elit at amet.
+                    </p>
+                </div>
 
-        <div>
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">BrandName</h2>
-          <p className="text-sm leading-relaxed">
-            Discover the best products, unparalleled service, and delightful
-            experiences. Let us bring innovation to your everyday life.
-          </p>
-        </div>
+                {/* About Us */}
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">About Us</h3>
+                    <ul className="space-y-2">
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Careers
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Our Stores
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Our Cares
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Terms & Conditions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-        {/* <!-- Quick Links --> */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
+                {/* Customer Care */}
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">
+                        Customer Care
+                    </h3>
+                    <ul className="space-y-2">
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Help Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                How to Buy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Track Your Order
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Corporate & Bulk Purchasing
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="text-sm hover:underline">
+                                Returns & Refunds
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-        {/* <!-- Support --> */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Support</h3>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Help Center
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Returns
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-yellow-400 transition">
-                Shipping Info
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        {/* <!-- Contact Information --> */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-          <p className="text-sm">
-            <strong>Address:</strong> 123 Main Street, Anytown, USA
-          </p>
-          <p className="text-sm">
-            <strong>Email:</strong>{" "}
-            <a href="mailto:support@brandname.com" className="hover:underline">
-              support@brandname.com
-            </a>
-          </p>
-          <p className="text-sm">
-            <strong>Phone:</strong> +1 (123) 456-7890
-          </p>
-          <div className="flex space-x-4 mt-4">
-            <a
-              href="#"
-              className="text-xl hover:text-yellow-400 transition"
-              aria-label="Facebook"
-            >
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a
-              href="#"
-              className="text-xl hover:text-yellow-400 transition"
-              aria-label="Twitter"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a
-              href="#"
-              className="text-xl hover:text-yellow-400 transition"
-              aria-label="Instagram"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a
-              href="#"
-              className="text-xl hover:text-yellow-400 transition"
-              aria-label="LinkedIn"
-            >
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-gray-200 text-gray-700 text-sm py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 BrandName. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  );
+                {/* Contact Us */}
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+                    <address className="not-italic text-sm space-y-2">
+                        <p>
+                            70 Washington Square South, New York, NY 10012,
+                            United States
+                        </p>
+                        <p>
+                            Email:{" "}
+                            <a
+                                href="mailto:ui.lib.help@gmail.com"
+                                className="hover:underline"
+                            >
+                                ui.lib.help@gmail.com
+                            </a>
+                        </p>
+                        <p>Phone: +1 112 3456 780</p>
+                    </address>
+                    <div className="flex space-x-4 mt-4">
+                        <a href="#" className="text-xl hover:text-gray-300">
+                            <i className="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" className="text-xl hover:text-gray-300">
+                            <i className="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" className="text-xl hover:text-gray-300">
+                            <i className="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" className="text-xl hover:text-gray-300">
+                            <i className="fab fa-google"></i>
+                        </a>
+                        <a href="#" className="text-xl hover:text-gray-300">
+                            <i className="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;
